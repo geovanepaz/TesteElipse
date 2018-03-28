@@ -16,7 +16,7 @@ namespace Elipse.Controllers
 {
     public class PrevisaoController : ApiController
     {
-        // GET api/{cidade}/previsao
+        // GET /{cidade}/previsao
         public HttpResponseMessage Get(String cidade)
         {
             int codMunicipio = ServicePrevisao.GetCodMunicipio(cidade);

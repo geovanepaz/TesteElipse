@@ -47,13 +47,14 @@ namespace Elipse.Service
 
             var responsePrev = (ResponseWebService)xmlSerializer.Deserialize(reader);
 
-            Previsao tempDiaSeguinte;
+            Previsao tempDiaSeguinte = null;
+            string dateCurrent = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd");
 
-            if (responsePrev.Previsao[0].Dia.Equals(DateTime.Now.ToString("yyyy-dd-MM")))
-                tempDiaSeguinte = responsePrev.Previsao[1];
-            else
-                tempDiaSeguinte = responsePrev.Previsao[0];
-
+            foreach (var item in responsePrev.Previsao)
+            {
+                if (item.Dia.Equals(dateCurrent))
+                    tempDiaSeguinte = item;
+            }
 
             var prev =
                 new PrevisaoViewModel
